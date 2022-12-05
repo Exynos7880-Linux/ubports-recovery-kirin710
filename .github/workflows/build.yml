@@ -1,0 +1,70 @@
+
+name: Build RecoveryRamDisk
+
+on: 
+  release:
+    types: [published]
+  push:
+    branches: 
+      - master
+
+jobs:
+
+  build:
+    runs-on: ubuntu-20.04
+
+    env:
+      DEVICE: a5y17lte
+      ANDROID_ROOT: /home/runner/work/halium/
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    
+    - name: Initialization environment
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y \
+        openjdk-8-jdk android-tools-adb bc \
+        bison build-essential curl flex g++-multilib \
+        gcc-multilib gnupg gperf imagemagick lib32ncurses5-dev \
+        lib32readline-dev lib32z1-dev libesd0-dev liblz4-tool \
+        libncurses5-dev libsdl1.2-dev libssl-dev libwxgtk3.0-dev \
+        libxml2 libxml2-utils lzop pngcrush rsync schedtool \
+        squashfs-tools xsltproc yasm zip zlib1g-dev git
+
+    - name: Download repo
+      run: |
+        mkdir -p ~/bin
+        wget 'https://storage.googleapis.com/git-repo-downloads/repo' -P ~/bin
+        chmod +x ~/bin/repo
+        git config --global user.name "aymanrgab"
+        git config --global user.email "aymanrar2c@gmail.com"
+
+    - name: Downloading source code
+      run: |
+        source hadk.env
+        mkdir -p $ANDROID_ROOT
+        cd $ANDROID_ROOT
+        repo init -u https://github.com/muhammad23012009/halium_recovery_minimal.git --depth=1
+        git clone -b halium https://github.com/Exynos7880-Linux/local_manifests.git .repo/local_manifests
+        repo sync
+        
+    - name: Build Recovery
+      run: |
+        chmod +x build.sh
+        bash build.sh
+      shell: bash
+
+    - name: Check free disk
+      if: failure()
+      run: |
+        df -h
+      shell: bash
+
+    - name : Upload ramdisk image
+      uses: actions/upload-artifact@main
+      with:
+        name: recoveryramdisk
+        path: ${{env.ANDROID_ROOT}}/out/target/product/${{env.DEVICE}}/*.img
+
