@@ -1,64 +1,55 @@
-version: 2.1
-
 jobs:
-
   build:
-    machine:
-      image: ubuntu-2004:current
-
+    machine: true
+    working_directory: ~/halium
     environment:
       DEVICE: a5y17lte
-      ANDROID_ROOT: /home/runner/work/halium/
-
+      ANDROID_ROOT: ~/halium
     steps:
-      - run: 
-        name: Initialization environment
-        command: |
-          sudo dpkg --add-architecture i386
-          sudo apt update
-          sudo apt-get install -y \
-          git gnupg flex bison gperf build-essential \
-          zip bzr curl libc6-dev libncurses5-dev:i386 x11proto-core-dev \
-          libx11-dev:i386 libreadline6-dev:i386 libgl1-mesa-glx:i386 \
-          libgl1-mesa-dev g++-multilib mingw-w64-i686-dev tofrodos \
-          python3-markdown libxml2-utils xsltproc zlib1g-dev:i386 schedtool \
-          liblz4-tool bc lzop imagemagick libncurses5 rsync \
-          python-is-python3
+      - checkout
+      - run:
+          name: Initialization environment
+          command: |
+            sudo dpkg --add-architecture i386
+            sudo apt-get install -y \
+            git gnupg flex bison gperf build-essential \
+            zip bzr curl libc6-dev libncurses5-dev:i386 x11proto-core-dev \
+            libx11-dev:i386 libreadline6-dev:i386 libgl1-mesa-glx:i386 \
+            libgl1-mesa-dev g++-multilib mingw-w64-i686-dev tofrodos \
+            python3-markdown libxml2-utils xsltproc zlib1g-dev:i386 schedtool \
+            liblz4-tool bc lzop imagemagick libncurses5 rsync \
+            python-is-python3
+            
+      - run:
+          name: Download repo
+          command: |
+            mkdir -p ~/bin
+            wget 'https://storage.googleapis.com/git-repo-downloads/repo' -P ~/bin
+            chmod +x ~/bin/repo
+            git config --global user.name "aymanrgab"
+            git config --global user.email "aymanrar2c@gmail.com"
+            
+      - run:
+          name: Downloading source code
+          command: |
+            source hadk.env
+            mkdir -p $ANDROID_ROOT
+            cd $ANDROID_ROOT
+            repo init -u https://github.com/muhammad23012009/halium_recovery_minimal.git --depth=1
+            repo sync
+            git clone -b lineage-17.1_7880only https://github.com/aymanrgab/proprietary_vendor_samsung.git vendor/samsung/universal7880-common
+ 
+      - run:
+          name: Build Recovery
+          command: |
+            chmod +x build.sh
+            bash build.sh
 
-      - run: 
-        name: Download repo
-        command: |
-          mkdir -p ~/bin
-          wget 'https://storage.googleapis.com/git-repo-downloads/repo' -P ~/bin
-          chmod +x ~/bin/repo
-          git config --global user.name "aymanrgab"
-          git config --global user.email "aymanrar2c@gmail.com"
+      - run:
+          name: Check free disk
+          when: on_fail
+          command: |
+            df -h
 
-      - run: 
-        name: Downloading source code
-        command: |
-          source hadk.env
-          mkdir -p $ANDROID_ROOT
-          cd $ANDROID_ROOT
-          repo init -u https://github.com/muhammad23012009/halium_recovery_minimal.git --depth=1
-          repo sync
-          git clone -b lineage-17.1_7880only https://github.com/aymanrgab/proprietary_vendor_samsung.git vendor/samsung/universal7880-common
-        
-      - run: 
-        name: Build Recovery
-        command: |
-          chmod +x build.sh
-          bash build.sh
-
-      - run: 
-        name: Check free disk
-        when: on_fail
-        command: df -h
-
-      - store_artifacts: 
+      - store_artifacts:
           path: ${{Environment.ANDROID_ROOT}}/out/target/product/${{Environment.DEVICE}}/*.img
-
-workflows:
-  build_and_store_artifacts: 
-    jobs:
-      - build:
