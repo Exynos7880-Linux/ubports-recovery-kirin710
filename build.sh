@@ -11,4 +11,4 @@ breakfast $DEVICE
 echo "clean .repo folder"
 rm -rf $ANDROID_ROOT/.repo
 
-make -j$(nproc --all) recoveryramdisk
+make -j$(nproc --all) recoveryimage
