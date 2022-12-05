@@ -37,7 +37,7 @@ jobs:
             cd $ANDROID_ROOT
             repo init -u https://github.com/Halium/android.git -b halium-10.0 --depth=1
             repo sync
-            git clone -b lineage-17.1_7880only https://github.com/aymanrgab/proprietary_vendor_samsung.git vendor/samsung/universal7880-common --depth 1
+            git clone -b lineage-17.1_7880only https://github.com/aymanrgab/proprietary_vendor_samsung.git vendor/samsung --depth 1
 
       - run:
           name: Build Recovery
