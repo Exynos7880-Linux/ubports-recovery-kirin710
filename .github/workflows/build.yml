@@ -48,8 +48,9 @@ jobs:
         mkdir -p $ANDROID_ROOT
         cd $ANDROID_ROOT
         repo init -u https://github.com/muhammad23012009/halium_recovery_minimal.git --depth=1
-        git clone -b halium https://github.com/Exynos7880-Linux/local_manifests.git .repo/local_manifests
+        # git clone -b halium https://github.com/Exynos7880-Linux/local_manifests.git .repo/local_manifests
         repo sync
+        git clone -b lineage-17.1_7880only https://github.com/aymanrgab/proprietary_vendor_samsung.git vendor/samsung/universal7880-common
         
     - name: Build Recovery
       run: |
