@@ -38,11 +38,7 @@ jobs:
             repo init -u https://github.com/Halium/android.git -b halium-10.0 --depth=1
             repo sync
             git clone -b lineage-17.1_7880only https://github.com/aymanrgab/proprietary_vendor_samsung.git vendor/samsung/universal7880-common --depth 1
-            git clone -b lineage-17.1 https://github.com/LineageOS/android_kernel_samsung_universal7880.git kernel/samsung/universal7880 --depth 1
-            git clone -b lineage-17.1 https://github.com/LineageOS/android_device_samsung_universal7880-common.git device/samsung/universal7880-common
-            git clone -b lineage-17.1 https://github.com/LineageOS/android_device_samsung_a5y17lte.git device/samsung/a5y17lte
-            git clone -b lineage-17.1 https://github.com/LineageOS/android_hardware_samsung.git hardware/samsung
- 
+
       - run:
           name: Build Recovery
           command: |
