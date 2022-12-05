@@ -5,6 +5,7 @@ cd $ANDROID_ROOT
 ./hybris-patches/apply-patches.sh --mb
 
 source build/envsetup.sh 2>&1
+lunch $DEVICE
 breakfast $DEVICE
 
 echo "clean .repo folder"
