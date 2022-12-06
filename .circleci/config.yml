@@ -59,7 +59,7 @@ jobs:
     image: ubuntu-2004:current
     working_directory: ~/halium
     environment:
-      DEVICE: a5y17lte
+      DEVICE: a7y17lte
       ANDROID_ROOT: ~/halium
     steps:
       - checkout
@@ -108,3 +108,10 @@ jobs:
 
       - store_artifacts:
           path: ~/a7y17lte.tar.gz
+          
+workflows:
+  version: 2
+  build_and_upload:
+    jobs:
+      - build_a5
+      - build_a7
