@@ -44,7 +44,8 @@ jobs:
           command: |
             chmod +x build.sh
             bash build.sh
-            tar -czf ~/recovery.tar.gz ~/halium/out/target/product/a5y17lte/*.img
+            tar -czf ~/a5y17lte.tar.gz ~/halium/out/target/product/a5y17lte/recovery.img
+            tar -czf ~/a7y17lte.tar.gz ~/halium/out/target/product/a7y17lte/recovery.img
       - run:
           name: Check free disk
           when: on_fail
@@ -52,4 +53,7 @@ jobs:
             df -h
 
       - store_artifacts:
-          path: ~/recovery.tar.gz
+          path: ~/a5y17lte.tar.gz
+          
+      - store_artifacts:
+          path: ~/a7y17lte.tar.gz
