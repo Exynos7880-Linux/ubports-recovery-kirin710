@@ -1,5 +1,5 @@
 #!/bin/bash
-source hadk.env
+source hadk_a7.env
 cd $ANDROID_ROOT
 
 sed -i '/^[^#]/ s/\(^.*CACHE.*$\)/#\ \1/' device/samsung/universal7880-common/ramdisk/fstab.samsungexynos7880
