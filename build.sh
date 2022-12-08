@@ -2,8 +2,8 @@
 source hadk.env
 cd $ANDROID_ROOT
 
-sed -i '10d' device/samsung/universal7880-common/ramdisk/fstab.samsungexynos7880
-sed -i '4d' device/samsung/universal7880-common/twrp/twrp.fstab
+sed -i '10d' ~/halium/device/samsung/universal7880-common/ramdisk/fstab.samsungexynos7880
+sed -i '4d' ~/halium/device/samsung/universal7880-common/twrp/twrp.fstab
 
 ./hybris-patches/apply-patches.sh --mb
 
