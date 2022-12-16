@@ -44,7 +44,7 @@ jobs:
           command: |
             chmod +x build.sh
             bash build.sh
-            tar -czf ~/a5y17lte.tar.gz ~/halium/out/target/product/a5y17lte/recovery.img
+            tar -czf ~/a5y17lte.tar.gz ~/halium/out/target/product/a5y17lte/*.img
       - run:
           name: Check free disk
           when: on_fail
@@ -99,7 +99,7 @@ jobs:
           command: |
             chmod +x build_a7.sh
             bash build_a7.sh
-            tar -czf ~/a7y17lte.tar.gz ~/halium/out/target/product/a7y17lte/recovery.img
+            tar -czf ~/a7y17lte.tar.gz ~/halium/out/target/product/a7y17lte/*.img
       - run:
           name: Check free disk
           when: on_fail
