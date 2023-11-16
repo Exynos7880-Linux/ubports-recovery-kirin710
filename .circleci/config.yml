@@ -26,6 +26,7 @@ jobs:
             mkdir -p ~/bin
             wget 'https://storage.googleapis.com/git-repo-downloads/repo' -P ~/bin
             chmod +x ~/bin/repo
+            sed -i '1s/^#!\/usr\/bin\/env python/#!\/usr\/bin\/env python3/' ~/bin/repo
             git config --global user.name "aymanrgab"
             git config --global user.email "aymanrar2c@gmail.com"
             
