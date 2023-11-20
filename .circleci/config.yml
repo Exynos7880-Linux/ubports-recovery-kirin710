@@ -36,9 +36,9 @@ jobs:
             source hadk.env
             mkdir -p $ANDROID_ROOT
             cd $ANDROID_ROOT
-            repo init -u https://github.com/Halium/android.git -b halium-9.0 --depth=1
+            repo init -u https://github.com/Halium/android.git -b halium-11.0 --depth=1
             repo sync
-            git clone https://github.com/Exynos7880-Linux/android_device_huawei_kirin710-shrp.git device/huawei/kirin710
+            git clone https://github.com/Exynos7880-Linux/kirin710_local_manifests.git .repo/local_manifests
 
       - run:
           name: Build Recovery

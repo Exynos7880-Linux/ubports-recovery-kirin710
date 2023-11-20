@@ -7,7 +7,7 @@ cd $ANDROID_ROOT
 source build/envsetup.sh 2>&1
 export ALLOW_MISSING_DEPENDENCIES=true
 #export KERNEL_MAKE_FLAGS="-j4 -O=2"
-breakfast omni_$DEVICE-eng
+breakfast $DEVICE
 
 echo "clean .repo folder"
 rm -rf $ANDROID_ROOT/.repo
