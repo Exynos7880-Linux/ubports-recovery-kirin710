@@ -10,7 +10,7 @@ git clone https://github.com/Exynos7880-Linux/kernel_huawei_miami.git kernel/hua
 git clone https://github.com/Exynos7880-Linux/android_hardware_huawei.git hardware/huawei
 #git clone https://github.com/Iceows/android_vendor_huawei_hi6250-9-common.git vendor/huawei/hi6250-9-common
 git clone https://github.com/LineageOS/android_hardware_broadcom_wlan.git hardware/broadcom/wlan
-git clone https://android.googlesource.com/platform/external/wpa_supplicant_8 external/wpa_supplicant_8
+git clone https://android.googlesource.com/platform/external/wpa_supplicant_8 external/wpa_supplicant_8 -b android10-release
 
 ./hybris-patches/apply-patches.sh --mb
 
