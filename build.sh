@@ -8,7 +8,7 @@ git clone https://github.com/Exynos7880-Linux/android_device_huawei_kirin710-9-c
 git clone https://github.com/Exynos7880-Linux/android_device_huawei_kirin710.git device/huawei/kirin710
 git clone https://github.com/Exynos7880-Linux/kernel_huawei_miami.git kernel/huawei/kirin710-9
 git clone https://github.com/Exynos7880-Linux/android_hardware_huawei.git hardware/huawei
-git clone https://github.com/Iceows/android_vendor_huawei_hi6250-9-common.git vendor/huawei/hi6250-9-common
+#git clone https://github.com/Iceows/android_vendor_huawei_hi6250-9-common.git vendor/huawei/hi6250-9-common
 git clone https://github.com/LineageOS/android_hardware_broadcom_wlan.git hardware/broadcom/wlan
 
 ./hybris-patches/apply-patches.sh --mb
