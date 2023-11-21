@@ -16,7 +16,7 @@ git clone https://github.com/LineageOS/android_hardware_broadcom_wlan.git hardwa
 source build/envsetup.sh 2>&1
 export ALLOW_MISSING_DEPENDENCIES=true
 #export KERNEL_MAKE_FLAGS="-j4 -O=2"
-breakfast lineage_$DEVICE
+breakfast $DEVICE
 
 echo "clean .repo folder"
 rm -rf $ANDROID_ROOT/.repo
