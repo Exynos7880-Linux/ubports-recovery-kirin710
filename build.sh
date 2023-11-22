@@ -1,6 +1,7 @@
 #!/bin/bash
 source hadk.env
 cd $ANDROID_ROOT
+set -xe
 
 git clone https://github.com/Exynos7880-Linux/android_vendor_huawei_kirin710-9-common.git vendor/huawei/kirin710-9-common
 git clone https://github.com/Exynos7880-Linux/android_vendor_huawei_kirin710.git vendor/huawei/kirin710
